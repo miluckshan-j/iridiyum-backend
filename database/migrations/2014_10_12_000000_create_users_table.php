@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('bio');
-            $table->date('date_of_birth');
+            $table->string('date_of_birth');
             $table->string('gender');
             $table->string('university');
             $table->string('degree');

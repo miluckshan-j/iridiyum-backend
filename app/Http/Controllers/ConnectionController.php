@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Connection;
+use App\Connection;
 use Illuminate\Support\Facades\Hash;
 
 class ConnectionController extends Controller
 {
 
-  public function addConnection(Request $request, $id, $cid){
+  public function addConnection($id, $cid){
     $connection = new Connection();
     $connection->user_id=$id;
     $connection->connection_user_id=$cid;
@@ -35,7 +35,7 @@ class ConnectionController extends Controller
     $records = DB::delete("DELETE FROM connections WHERE user_id ='$id' AND connection_user_id ='$cid'");
     if($records>0){
       $message = "Connection Removed Successfully";
-      $status = 204;
+      $status = 200;
     }else{
       $message = "Connection Removal Failed";
       $status = 404;

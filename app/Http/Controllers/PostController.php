@@ -35,7 +35,7 @@ class PostController extends Controller
     $records = DB::delete("DELETE FROM posts WHERE id ='$id'");
     if($records>0){
       $message = "Post Deleted Successfully";
-      $status = 204;
+      $status = 200;
     }else{
       $message = "Post Deletion Failed";
       $status = 404;
@@ -69,5 +69,15 @@ class PostController extends Controller
   }
 
   // Route::get('/group/{id}/post','PostController@getGroupPosts');
+  public function getGroupPosts($id){
+    $res = DB::table('posts')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->join('connection_groups', 'users.id', '=', 'connection_groups.connection_user_id')
+            ->select('posts.*')
+            ->where('connection_groups.group_id', $id)
+            ->get();
+
+    return response()->json($res,200);
+  }
 
 }

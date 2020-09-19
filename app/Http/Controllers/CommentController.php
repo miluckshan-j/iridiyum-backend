@@ -12,8 +12,8 @@ class CommentController extends Controller
   public function addComment(Request $request, $id){
     $comment = new Comment();
     $comment->post_id=$id;
-    $comment->user_id=$request->input('user_id');
-    $comment->text=$request->input('text');
+    $comment->connection_user_id=$request->input('user_id');
+    $comment->comment=$request->input('text');
 
     $res=$comment->save();
     if($res=true){
@@ -27,11 +27,9 @@ class CommentController extends Controller
   }
 
   public function editComment(Request $request,$id,$cid){
+    $connection_user_id=$request->input('connection_user_id');
     $comment=$request->input('comment');
-
-    $res= Comment::where('post_id', $id)->update(array(
-      'post_id'=>$id,
-      'connection_user_id'=>$cid,
+    $res= Comment::where([['id', $cid],['connection_user_id', $connection_user_id]])->update(array(
       'comment'=>$comment
     ));
     if($res>0){
@@ -48,7 +46,7 @@ class CommentController extends Controller
     $records = DB::delete("DELETE FROM comments WHERE post_id ='$id' AND id = '$cid'");
     if($records>0){
       $message = "Comment Deleted Successfully";
-      $status = 204;
+      $status = 200;
     }else{
       $message = "Comment Deletion Failed";
       $status = 404;

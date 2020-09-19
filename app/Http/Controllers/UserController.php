@@ -68,7 +68,7 @@ class UserController extends Controller
       'university'=>$university,
       'degree'=>$degree,
       'profile_picture'=>$profile_picture,
-      'banner_picture'=>$banner_picture
+      'banner_picture'=>$banner_picture,
       'is_online'=>$is_online
     ));
     if($res>0){

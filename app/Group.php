@@ -9,7 +9,7 @@ class Group extends Model
   protected $table = 'groups';
 
   protected $fillable = [
-      'user_id', 'connection_user_id', 'name'
+      'user_id', 'name'
   ];
 
 }

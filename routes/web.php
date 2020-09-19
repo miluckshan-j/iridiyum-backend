@@ -27,8 +27,8 @@ Route::post('/group','GroupController@createGroup');
 Route::put('/group/{id}','GroupController@editGroup');
 Route::delete('/group/{id}','GroupController@deleteGroup');
 Route::post('/group/{id}/connection/{cid}','GroupController@addConnectionToGroup');
-Route::delete('/user/{id}/connection/{cid}','GroupController@deleteConnectionFromGroup');
-Route::get('/user/{id}/connection','GroupController@getConnectionInGroup');
+Route::delete('/group/{id}/connection/{cid}','GroupController@deleteConnectionFromGroup');
+Route::get('/group/{id}/connection','GroupController@getConnectionInGroup');
 
 Route::post('/user/{id}/connection/{cid}','ConnectionController@addConnection');
 Route::get('/user/{id}/connection','ConnectionController@getConnections');
